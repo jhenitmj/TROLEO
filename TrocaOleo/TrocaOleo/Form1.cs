@@ -26,7 +26,7 @@ namespace TrocaOleo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            txtValorLitro.Focus();
             CarregarCli();
             CarregarOleo();
            
@@ -104,15 +104,19 @@ namespace TrocaOleo
         }
 
         private void txtQtdeLitro_Validating(object sender, CancelEventArgs e)
-        {
-            decimal qtde_litro, valor_litro, valor_total;
+        { 
 
-            qtde_litro = Convert.ToDecimal(txtQtdeLitro.Text);
-            valor_litro = Convert.ToDecimal(txtValorLitro.Text);
+            decimal Valor1 = 0, Valor2 = 0, Resultado = 0;
 
-            valor_total = qtde_litro * valor_litro;
+            if (txtValorLitro.Text != "" && txtQtdeLitro.Text != "")
+            {
+                Valor1 = decimal.Parse(txtValorLitro.Text);
+                Valor2 = decimal.Parse(txtQtdeLitro.Text);
 
-            txtValorTotal.Text = valor_total.ToString();
+                Resultado = Valor1 * Valor2;
+
+            }
+            txtValorTotal.Text = Resultado.ToString();
 
         }
 

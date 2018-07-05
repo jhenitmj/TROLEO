@@ -3,10 +3,11 @@ USE TROLEO
 
 CREATE TABLE [USER]
 (
-CODU	INT PRIMARY KEY,
+CODU	INT PRIMARY KEY identity(1,1),
 EMAIL	VARCHAR(100),
 SENHA	VARCHAR(20) 
 )
+
 
 CREATE TABLE CLIENTE 
 (
@@ -29,10 +30,11 @@ VALOR		DECIMAL(8,2)
 
 CREATE TABLE STROLEO
 (
-CODS	INT PRIMARY KEY,
+CODS	INT PRIMARY KEY identity(1,1),
 DATAS	DATETIME DEFAULT GETDATE(),
 CLIENTE VARCHAR(50),
 OLEO	VARCHAR(50),
+CATEGORIA VARCHAR(50),
 TIPO	VARCHAR(50),
 FABRICANTE	VARCHAR(50),
 VALOR		DECIMAL(8,2),
@@ -41,20 +43,17 @@ EMAILC		VARCHAR(50)
 )
 
 
-
-
-
 bulk insert [USER]
-from 'C:\Users\Aluno\Documents\GitHub\TROLEO\usuarios.txt'
+from 'C:\Users\Particular\Documents\GitHub\TROLEO\usuarios.txt'
 with (codepage='ACP', fieldterminator = ';')
 
 
 bulk insert CLIENTE
-from 'C:\Users\Aluno\Documents\GitHub\TROLEO\Clientes.txt'
+from 'C:\Users\Particular\Documents\GitHub\TROLEO\Clientes.txt'
 with (codepage='ACP', fieldterminator = ';')
 
 bulk insert OLEO
-from 'C:\Users\Aluno\Documents\GitHub\TROLEO\Oleos.txt'
+from 'C:\Users\Particular\Documents\GitHub\TROLEO\Oleos.txt'
 with (codepage='ACP', fieldterminator = ';')
 
 SELECT*FROM [USER]

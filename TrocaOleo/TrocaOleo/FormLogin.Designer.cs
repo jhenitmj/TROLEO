@@ -38,9 +38,12 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(70, 57);
+            this.lblEmail.BackColor = System.Drawing.Color.Transparent;
+            this.lblEmail.Font = new System.Drawing.Font("Wide Latin", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.ForeColor = System.Drawing.Color.Navy;
+            this.lblEmail.Location = new System.Drawing.Point(35, 82);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(42, 13);
+            this.lblEmail.Size = new System.Drawing.Size(106, 16);
             this.lblEmail.TabIndex = 0;
             this.lblEmail.Text = "EMAIL:";
             this.lblEmail.Click += new System.EventHandler(this.label1_Click);
@@ -48,15 +51,18 @@
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
-            this.lblSenha.Location = new System.Drawing.Point(65, 92);
+            this.lblSenha.Font = new System.Drawing.Font("Wide Latin", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSenha.ForeColor = System.Drawing.Color.Navy;
+            this.lblSenha.Location = new System.Drawing.Point(30, 133);
             this.lblSenha.Name = "lblSenha";
-            this.lblSenha.Size = new System.Drawing.Size(47, 13);
+            this.lblSenha.Size = new System.Drawing.Size(111, 16);
             this.lblSenha.TabIndex = 1;
             this.lblSenha.Text = "SENHA:";
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(118, 57);
+            this.txtEmail.ForeColor = System.Drawing.Color.Navy;
+            this.txtEmail.Location = new System.Drawing.Point(147, 82);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(190, 20);
             this.txtEmail.TabIndex = 2;
@@ -64,18 +70,21 @@
             // 
             // txtSenha
             // 
-            this.txtSenha.Location = new System.Drawing.Point(118, 89);
+            this.txtSenha.ForeColor = System.Drawing.Color.Navy;
+            this.txtSenha.Location = new System.Drawing.Point(148, 129);
             this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(190, 20);
             this.txtSenha.TabIndex = 3;
             // 
             // btnEntrar
             // 
-            this.btnEntrar.Location = new System.Drawing.Point(233, 138);
+            this.btnEntrar.Font = new System.Drawing.Font("Wide Latin", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEntrar.Location = new System.Drawing.Point(220, 167);
             this.btnEntrar.Name = "btnEntrar";
-            this.btnEntrar.Size = new System.Drawing.Size(75, 23);
+            this.btnEntrar.Size = new System.Drawing.Size(117, 27);
             this.btnEntrar.TabIndex = 4;
-            this.btnEntrar.Text = "Entrar";
+            this.btnEntrar.Text = "ENTRAR";
             this.btnEntrar.UseVisualStyleBackColor = true;
             this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
             // 
@@ -83,7 +92,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(431, 261);
+            this.BackgroundImage = global::TrocaOleo.Properties.Resources.download;
+            this.ClientSize = new System.Drawing.Size(406, 226);
             this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.txtEmail);
