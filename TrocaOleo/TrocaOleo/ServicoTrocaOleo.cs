@@ -12,6 +12,11 @@ namespace TrocaOleo
         public DateTime Data { get; set; }
         public Cliente Cliente { get; set; }
         public Oleo Oleo { get; set; }
-        public int QtdeLitro { get; set; }
+        public string QtdeLitro { get; set; }
+        public string Categoria { get; set; }
+        public string Tipo { get; set; }
+        public string Fabricante { get; set; }
+        public string ValorTotal { get; set; }
+        public string Email { get; set; }
     }
 }

@@ -20,15 +20,16 @@ namespace TrocaOleo
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (txtValorTotal.Text != null)
-            {
-                txtEmailCliente.Enabled = true;
-            }
+            
+              
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CarregarCategorias();
+
+            CarregarCli();
+            CarregarOleo();
+           
 
         }
 
@@ -39,8 +40,7 @@ namespace TrocaOleo
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            //ServicoDAO servicoDAO = new ServicoDAO();
-            //servicoDAO.Inserir(ServicoTrocaOleo);
+            Salvar();
         }
 
         private void lblVTotal_Click(object sender, EventArgs e)
@@ -81,17 +81,77 @@ namespace TrocaOleo
 
         }
 
-        private void CarregarCategorias()
+        private void CarregarOleo()
         {
             var lst = new List<Oleo>();
-            lst.AddRange(new OleoDAO().CarregarCategoria());
-            cmbCategoria.DataSource = lst;
-            cmbCategoria.DisplayMember = "NOME";
-            cmbCategoria.ValueMember = "CATEGORIA";
-            cmbCategoria.SelectedIndex = 0;
+            lst.AddRange(new OleoDAO().CarregarOleo());
+
+            foreach (var item in lst)
+            {
+                cmbCategoria.Items.Add(item.Categoria);
+                cmbOleo.Items.Add(item.Nome);
+                cmbTipo.Items.Add(item.Tipo);
+                cmbFabricante.Items.Add(item.Fabricante);
+            }
+      
+        }
+
+        private void CarregarCli()
+        {
+            ClienteDAO clienteDao = new ClienteDAO();
+            List<Cliente> cliente = clienteDao.CarregarCliente();
+
+            foreach (var cli in cliente)
+            {
+                cmbCliente.Items.Add(cli.Nome);
+            }
+
+        }
+
+        public void Salvar()
+        {
+            try
+            {
+                ClienteDAO clienteDao = new ClienteDAO();
+
+                if (clienteDao.ValidarEmail(txtEmailCliente.Text) == false)
+                {
+                    txtEmailCliente.Clear();
+                    MessageBox.Show("Email invállida", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtEmailCliente.Focus();
+                }
+                else
+                {
+                    var obj = new ServicoTrocaOleo();
+                    obj.Data = dtpData.Value;
+                    obj.Cliente.Nome = cmbCliente.Text;
+                    obj.Oleo.Nome = cmbOleo.Text;
+                    obj.Categoria = cmbCategoria.Text;
+                    obj.Tipo = cmbTipo.Text;
+                    obj.Fabricante = cmbFabricante.Text;
+                    obj.ValorTotal = txtValorTotal.Text;
+                    obj.QtdeLitro = txtQtdeLitro.Text;
+                    obj.Email = txtEmailCliente.Text;
+
+                    new ServicoDAO().Inserir(obj);
+
+                    MessageBox.Show("Dados salvos com sucesso");
+                    this.Hide();
+                    new Form1().Show();
+                }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("ERRO: " + er.Message);
+            }
         }
 
         private void cmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpData_ValueChanged(object sender, EventArgs e)
         {
 
         }

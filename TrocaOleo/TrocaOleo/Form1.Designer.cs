@@ -32,15 +32,12 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.txtValorLitro = new System.Windows.Forms.TextBox();
             this.txtQtdeLitro = new System.Windows.Forms.TextBox();
-            this.txtValorTotal = new System.Windows.Forms.TextBox();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.cmbOleo = new System.Windows.Forms.ComboBox();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.cmbFabricante = new System.Windows.Forms.ComboBox();
-            this.txtEmailCliente = new System.Windows.Forms.TextBox();
             this.lblData = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lblCliente = new System.Windows.Forms.Label();
             this.lblOleo = new System.Windows.Forms.Label();
             this.lblCategoria = new System.Windows.Forms.Label();
@@ -51,8 +48,9 @@
             this.lblVTotal = new System.Windows.Forms.Label();
             this.lblEmailCliente = new System.Windows.Forms.Label();
             this.btnSalvar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtCodOleo = new System.Windows.Forms.TextBox();
+            this.dtpData = new System.Windows.Forms.DateTimePicker();
+            this.txtValorTotal = new System.Windows.Forms.TextBox();
+            this.txtEmailCliente = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,20 +71,10 @@
             this.txtQtdeLitro.TextChanged += new System.EventHandler(this.txtQtdeLitro_TextChanged);
             this.txtQtdeLitro.Validating += new System.ComponentModel.CancelEventHandler(this.txtQtdeLitro_Validating);
             // 
-            // txtValorTotal
-            // 
-            this.txtValorTotal.Enabled = false;
-            this.txtValorTotal.Location = new System.Drawing.Point(271, 252);
-            this.txtValorTotal.Name = "txtValorTotal";
-            this.txtValorTotal.ReadOnly = true;
-            this.txtValorTotal.Size = new System.Drawing.Size(121, 20);
-            this.txtValorTotal.TabIndex = 2;
-            this.txtValorTotal.TextChanged += new System.EventHandler(this.txtValorTotal_TextChanged);
-            // 
             // cmbCliente
             // 
             this.cmbCliente.FormattingEnabled = true;
-            this.cmbCliente.Location = new System.Drawing.Point(271, 31);
+            this.cmbCliente.Location = new System.Drawing.Point(271, 56);
             this.cmbCliente.Name = "cmbCliente";
             this.cmbCliente.Size = new System.Drawing.Size(121, 21);
             this.cmbCliente.TabIndex = 3;
@@ -94,6 +82,7 @@
             // 
             // cmbCategoria
             // 
+            this.cmbCategoria.ForeColor = System.Drawing.SystemColors.MenuText;
             this.cmbCategoria.FormattingEnabled = true;
             this.cmbCategoria.Location = new System.Drawing.Point(271, 119);
             this.cmbCategoria.Name = "cmbCategoria";
@@ -125,38 +114,19 @@
             this.cmbFabricante.Size = new System.Drawing.Size(121, 21);
             this.cmbFabricante.TabIndex = 7;
             // 
-            // txtEmailCliente
-            // 
-            this.txtEmailCliente.Enabled = false;
-            this.txtEmailCliente.Location = new System.Drawing.Point(271, 278);
-            this.txtEmailCliente.Name = "txtEmailCliente";
-            this.txtEmailCliente.Size = new System.Drawing.Size(121, 20);
-            this.txtEmailCliente.TabIndex = 8;
-            this.txtEmailCliente.TextChanged += new System.EventHandler(this.txtEmailCliente_TextChanged);
-            // 
             // lblData
             // 
             this.lblData.AutoSize = true;
-            this.lblData.Location = new System.Drawing.Point(174, 11);
+            this.lblData.Location = new System.Drawing.Point(174, 15);
             this.lblData.Name = "lblData";
             this.lblData.Size = new System.Drawing.Size(30, 13);
             this.lblData.TabIndex = 9;
             this.lblData.Text = "Data";
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(271, 5);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2018, 7, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(216, 20);
-            this.dateTimePicker1.TabIndex = 10;
-            this.dateTimePicker1.Value = new System.DateTime(2018, 7, 1, 0, 0, 0, 0);
-            // 
             // lblCliente
             // 
             this.lblCliente.AutoSize = true;
-            this.lblCliente.Location = new System.Drawing.Point(174, 39);
+            this.lblCliente.Location = new System.Drawing.Point(174, 64);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(39, 13);
             this.lblCliente.TabIndex = 11;
@@ -246,29 +216,38 @@
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
-            // label1
+            // dtpData
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(174, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Codigo";
+            this.dtpData.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.dtpData.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpData.Location = new System.Drawing.Point(271, 12);
+            this.dtpData.Name = "dtpData";
+            this.dtpData.Size = new System.Drawing.Size(190, 32);
+            this.dtpData.TabIndex = 21;
+            this.dtpData.ValueChanged += new System.EventHandler(this.dtpData_ValueChanged);
             // 
-            // txtCodOleo
+            // txtValorTotal
             // 
-            this.txtCodOleo.Location = new System.Drawing.Point(271, 66);
-            this.txtCodOleo.Name = "txtCodOleo";
-            this.txtCodOleo.Size = new System.Drawing.Size(67, 20);
-            this.txtCodOleo.TabIndex = 22;
+            this.txtValorTotal.Location = new System.Drawing.Point(271, 252);
+            this.txtValorTotal.Name = "txtValorTotal";
+            this.txtValorTotal.Size = new System.Drawing.Size(121, 20);
+            this.txtValorTotal.TabIndex = 22;
+            // 
+            // txtEmailCliente
+            // 
+            this.txtEmailCliente.Location = new System.Drawing.Point(271, 285);
+            this.txtEmailCliente.Name = "txtEmailCliente";
+            this.txtEmailCliente.Size = new System.Drawing.Size(121, 20);
+            this.txtEmailCliente.TabIndex = 23;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.txtCodOleo);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtEmailCliente);
+            this.Controls.Add(this.txtValorTotal);
+            this.Controls.Add(this.dtpData);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.lblEmailCliente);
             this.Controls.Add(this.lblVTotal);
@@ -279,15 +258,12 @@
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.lblOleo);
             this.Controls.Add(this.lblCliente);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.lblData);
-            this.Controls.Add(this.txtEmailCliente);
             this.Controls.Add(this.cmbFabricante);
             this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.cmbOleo);
             this.Controls.Add(this.cmbCategoria);
             this.Controls.Add(this.cmbCliente);
-            this.Controls.Add(this.txtValorTotal);
             this.Controls.Add(this.txtQtdeLitro);
             this.Controls.Add(this.txtValorLitro);
             this.Name = "Form1";
@@ -304,15 +280,12 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.TextBox txtValorLitro;
         private System.Windows.Forms.TextBox txtQtdeLitro;
-        private System.Windows.Forms.TextBox txtValorTotal;
         private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.ComboBox cmbCategoria;
         private System.Windows.Forms.ComboBox cmbOleo;
         private System.Windows.Forms.ComboBox cmbTipo;
         private System.Windows.Forms.ComboBox cmbFabricante;
-        private System.Windows.Forms.TextBox txtEmailCliente;
         private System.Windows.Forms.Label lblData;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.Label lblOleo;
         private System.Windows.Forms.Label lblCategoria;
@@ -323,8 +296,9 @@
         private System.Windows.Forms.Label lblVTotal;
         private System.Windows.Forms.Label lblEmailCliente;
         private System.Windows.Forms.Button btnSalvar;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtCodOleo;
+        private System.Windows.Forms.DateTimePicker dtpData;
+        private System.Windows.Forms.TextBox txtValorTotal;
+        private System.Windows.Forms.TextBox txtEmailCliente;
     }
 }
 

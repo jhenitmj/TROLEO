@@ -16,7 +16,7 @@ namespace TrocaOleo
 
             using (SqlConnection conn = new SqlConnection(@"Data Source=localhost;Initial Catalog=TROLEO;Integrated Security=True"))
             {
-                string strSQL = "SELECT nome FROM CLIENTE;";
+                string strSQL = "SELECT * FROM CLIENTE;";
 
                 using (SqlCommand cmd = new SqlCommand(strSQL))
                 {
@@ -44,6 +44,27 @@ namespace TrocaOleo
                 }
             }
             return lst;
+        }
+
+        public bool ValidarEmail(string email)
+        {
+            if (String.IsNullOrEmpty(email))
+                return false;
+            if (!email.Contains("@") || !email.Contains("."))
+                return false;
+            string[] strCamposEmail = email.Split(new String[] { "@" }, StringSplitOptions.RemoveEmptyEntries);
+            if (strCamposEmail.Length != 2)
+                return false;
+            if (strCamposEmail[0].Length < 3)
+                return false;
+            if (!strCamposEmail[1].Contains("."))
+                return false;
+            strCamposEmail = strCamposEmail[1].Split(new String[] { "." }, StringSplitOptions.RemoveEmptyEntries);
+            if (strCamposEmail.Length < 2)
+                return false;
+            if (strCamposEmail[0].Length < 1)
+                return false;
+            return true;
         }
     }
 }

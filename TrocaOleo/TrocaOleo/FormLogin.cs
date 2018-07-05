@@ -86,7 +86,39 @@ namespace TrocaOleo
 
         private void FormLogin_Load_1(object sender, EventArgs e)
         {
+            Usuario obj = new Usuario();
 
+            obj.Email = txtEmail.Text;
+            obj.Senha = txtSenha.Text;
+
+            try
+            {
+                var usuario = new UsuarioDAO().Logar(obj);
+
+                if (!usuario.Senha.Equals(txtSenha.Text))
+                {
+                    txtSenha.Clear();
+                    MessageBox.Show("Senha invállida", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtSenha.Focus();
+                }
+                else if (!usuario.Email.Equals(txtEmail.Text))
+                {
+                    new UsuarioDAO().Inserir(obj);
+                    MessageBox.Show("Nova conta salva");
+                    this.Hide();
+                    new Form1().Show();
+                }
+                else
+                {
+                    MessageBox.Show("Logado com sucesso");
+                    this.Hide();
+           
+                }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("ERRO: " + er.Message);
+            }
         }
     }
 }

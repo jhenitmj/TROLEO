@@ -10,140 +10,48 @@ namespace TrocaOleo
 {
     public class OleoDAO
     {
-        public List<Oleo> CarregarNome()
-        {
-            var lst = new List<Oleo>();
+        
 
+        public List<Oleo> CarregarOleo()
+        {
             using (SqlConnection conn = new SqlConnection(@"Initial Catalog = TROLEO; Data Source = localhost; Integrated Security = SSPI"))
             {
-                string strSQL = "SELECT NOME FROM OLEO;";
-
-                using (SqlCommand cmd = new SqlCommand(strSQL))
+                string srtSQL = "SELECT * FROM OLEO";
+                DataTable dt = new DataTable();
+                conn.Open();
+                using (SqlCommand cmdo = new SqlCommand())
                 {
-                    conn.Open();
-                    cmd.Connection = conn;
-                    cmd.CommandText = strSQL;
+                    cmdo.CommandType = CommandType.Text;
+                    cmdo.Connection = conn;
+                    cmdo.CommandText = srtSQL;
+                    SqlDataReader dataReader;
 
-                    var dataReader = cmd.ExecuteReader();
-                    var dt = new DataTable();
+                    dataReader = cmdo.ExecuteReader();
                     dt.Load(dataReader);
+                    conn.Close();
 
                     if (!(dt != null && dt.Rows.Count > 0))
                         return null;
 
-                    conn.Close();
-                    foreach (DataRow row in dt.Rows)
+                    List<Oleo> listaOleo = new List<Oleo>();
+                    foreach (DataRow linha in dt.Rows)
                     {
-                        var oleo = new Oleo()
-                        {
-                            Cod = Convert.ToInt32(row["CODO"]),
-                            Nome = row["NOME"].ToString()
-                        };
-                        lst.Add(oleo);
+                        Oleo oleo = new Oleo();
+                        oleo.Nome = Convert.ToString(linha["Nome"]);
+                        oleo.Categoria = Convert.ToString(linha["Categoria"]);
+                        oleo.Tipo = Convert.ToString(linha["TPOLEO"]);
+                        oleo.Fabricante = Convert.ToString(linha["Fabricante"]);
+                        listaOleo.Add(oleo);
                     }
+                    return listaOleo;
+
                 }
             }
-            return lst;
         }
 
-        public List<Oleo> CarregarCategoria()
-        {
-            var lst = new List<Oleo>();
 
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog = TrocaOleo; Data Source = localhost; Integrated Security = SSPI"))
-            {
-                string strSQL = "SELECT CATEGORIA FROM OLEO;";
 
-                using (SqlCommand cmd = new SqlCommand(strSQL))
-                {
-                    conn.Open();
-                    cmd.Connection = conn;
-                    cmd.CommandText = strSQL;
-                    cmd.Parameters.Add("@CODO", SqlDbType.Int).Value =  ;
-                    var dataReader = cmd.ExecuteReader();
-                    var dt = new DataTable();
-                    dt.Load(dataReader);
 
-                    conn.Close();
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        var oleo = new Oleo()
-                        {  
-                            Cod = Convert.ToInt32(row["CODO"]),
-                            Categoria = row["CATEGORIA"].ToString()
-                        };
-                        lst.Add(oleo);
-                    }
-                }
-            }
-            return lst;
-        }
-
-        public List<Oleo> CarregarTipo()
-        {
-            var lst = new List<Oleo>();
-
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog = TROLEO; Data Source = localhost; Integrated Security = SSPI"))
-            {
-                string strSQL = "SELECT TIPO FROM OLEO;";
-
-                using (SqlCommand cmd = new SqlCommand(strSQL))
-                {
-                    conn.Open();
-                    cmd.Connection = conn;
-                    cmd.CommandText = strSQL;
-
-                    var dataReader = cmd.ExecuteReader();
-                    var dt = new DataTable();
-                    dt.Load(dataReader);
-
-                    conn.Close();
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        var oleo = new Oleo()
-                        {
-                            Cod = Convert.ToInt32(row["CODC"]),
-                            Tipo = row["TIPO"].ToString()
-                        };
-                        lst.Add(oleo);
-                    }
-                }
-            }
-            return lst;
-        }
-
-        public List<Oleo> CarregarFabricante()
-        {
-            var lst = new List<Oleo>();
-
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog = TROLEO; Data Source = localhost; Integrated Security = SSPI"))
-            {
-                string strSQL = "SELECT FABRICANTE FROM OLEO;";
-
-                using (SqlCommand cmd = new SqlCommand(strSQL))
-                {
-                    conn.Open();
-                    cmd.Connection = conn;
-                    cmd.CommandText = strSQL;
-
-                    var dataReader = cmd.ExecuteReader();
-                    var dt = new DataTable();
-                    dt.Load(dataReader);
-
-                    conn.Close();
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        var oleo = new Oleo()
-                        {
-                            Cod = Convert.ToInt32(row["CODO"]),
-                            Fabricante = row["FABRICANTE"].ToString()
-                        };
-                        lst.Add(oleo);
-                    }
-                }
-            }
-            return lst;
-        }
 
         ////public string CarregarValor()
         ////{

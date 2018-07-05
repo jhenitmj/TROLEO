@@ -10,7 +10,7 @@ namespace TrocaOleo
 {
     public class UsuarioDAO
     {
-        public  Usuario Logar(Usuario obj)
+        public Usuario Logar(Usuario obj)
         {
             using (SqlConnection conn = new SqlConnection(@"Initial Catalog = TROLEO; Data Source = localhost; Integrated Security = SSPI"))
             {
@@ -50,28 +50,24 @@ namespace TrocaOleo
 
         public void Inserir(Usuario obj)
         {
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog = TrocaOleo; Data Source = localhost; Integrated Security = SSPI"))
+
+            using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.conn))
             {
-                var usuario = new Usuario();
-                var usuarioLogado =  UsuarioDAO.Logar(usuario);
+                string strSQL = @"INSERT INTO USUARIO (EMAIL, SENHA) VALUES (@Email, @Senha);";
+
+                using (SqlCommand cmd = new SqlCommand(strSQL))
                 {
-                    if (usuarioLogado == null)
-                    {
-                        string strSQL = @"INSERT INTO usuario (email, senha) VALUES (@email, @senha);";
+                    cmd.Connection = conn;
+                    cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = obj.Email;
+                    cmd.Parameters.Add("@Senha", SqlDbType.VarChar).Value = obj.Senha;
 
-                        using (SqlCommand cmd = new SqlCommand(strSQL))
-                        {
-                            cmd.Connection = conn;
-                            cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = obj.Email;
-                            cmd.Parameters.Add("@senha", SqlDbType.VarChar).Value = obj.Senha;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
 
-                            conn.Open();
-                            cmd.ExecuteNonQuery();
-                            conn.Close();
-                        }
-                    }
                 }
             }
         }
     }
 }
+

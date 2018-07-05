@@ -1,6 +1,6 @@
 CREATE DATABASE TROLEO
 USE TROLEO
-DROP DATABASE TROLEO
+
 CREATE TABLE [USER]
 (
 CODU	INT PRIMARY KEY,
@@ -31,25 +31,35 @@ CREATE TABLE STROLEO
 (
 CODS	INT PRIMARY KEY,
 DATAS	DATETIME DEFAULT GETDATE(),
-CODC INT REFERENCES CLIENTE,
-CODO	INT REFERENCES OLEO,
-QTDEL	INT	
+CLIENTE VARCHAR(50),
+OLEO	VARCHAR(50),
+TIPO	VARCHAR(50),
+FABRICANTE	VARCHAR(50),
+VALOR		DECIMAL(8,2),
+qtde		int,
+EMAILC		VARCHAR(50)
 )
 
 
 
+
+
 bulk insert [USER]
-from 'C:\Users\Particular\Documents\GitHub\ExercicioTrocaOleo-master\usuarios.txt'
+from 'C:\Users\Aluno\Documents\GitHub\TROLEO\usuarios.txt'
 with (codepage='ACP', fieldterminator = ';')
 
 
 bulk insert CLIENTE
-from 'C:\Users\Particular\Documents\GitHub\ExercicioTrocaOleo-master\Clientes.txt'
+from 'C:\Users\Aluno\Documents\GitHub\TROLEO\Clientes.txt'
 with (codepage='ACP', fieldterminator = ';')
 
 bulk insert OLEO
-from 'C:\Users\Particular\Documents\GitHub\ExercicioTrocaOleo-master\Oleos.txt'
+from 'C:\Users\Aluno\Documents\GitHub\TROLEO\Oleos.txt'
 with (codepage='ACP', fieldterminator = ';')
 
 SELECT*FROM [USER]
 
+SELECT NOME FROM CLIENTE
+
+
+SELECT * FROM OLEO
