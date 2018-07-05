@@ -40,10 +40,45 @@ namespace TrocaOleo
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Salvar();
-        }
+            try
+            {
+                ClienteDAO clienteDao = new ClienteDAO();
 
-        private void lblVTotal_Click(object sender, EventArgs e)
+                if (clienteDao.ValidarEmail(txtEmailCliente.Text) == false)
+                {
+                    txtEmailCliente.Clear();
+                    MessageBox.Show("EMAIL INVALIDO", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtEmailCliente.Focus();
+                }
+                else
+                {
+                    var obj = new ServicoTrocaOleo();
+                    obj.Data = dtpData.Value;
+                    obj.Cliente = cmbCliente.Text;
+                    obj.Oleo = cmbOleo.Text;
+                    obj.Categoria = cmbCategoria.Text;
+                    obj.Tipo = cmbTipo.Text;
+                    obj.Fabricante = cmbFabricante.Text;
+                    obj.ValorTotal = Convert.ToInt32(txtValorTotal.Text);
+                    obj.QtdeLitro = txtQtdeLitro.Text;
+                    obj.Email = txtEmailCliente.Text;
+
+                    new ServicoDAO().Inserir(obj);
+
+                    MessageBox.Show("DADOS SALVOS COM SUCESSO");
+                    this.Hide();
+                    new Form1().Show();
+                }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show("ERRO: " + er.Message);
+            }
+        
+
+    }
+
+    private void lblVTotal_Click(object sender, EventArgs e)
         {
 
         }
@@ -108,44 +143,7 @@ namespace TrocaOleo
 
         }
 
-        public void Salvar()
-        {
-            try
-            {
-                ClienteDAO clienteDao = new ClienteDAO();
-
-                if (clienteDao.ValidarEmail(txtEmailCliente.Text) == false)
-                {
-                    txtEmailCliente.Clear();
-                    MessageBox.Show("Email invállida", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtEmailCliente.Focus();
-                }
-                else
-                {
-                    var obj = new ServicoTrocaOleo();
-                    obj.Data = dtpData.Value;
-                    obj.Cliente.Nome = cmbCliente.Text;
-                    obj.Oleo.Nome = cmbOleo.Text;
-                    obj.Categoria = cmbCategoria.Text;
-                    obj.Tipo = cmbTipo.Text;
-                    obj.Fabricante = cmbFabricante.Text;
-                    obj.ValorTotal = txtValorTotal.Text;
-                    obj.QtdeLitro = txtQtdeLitro.Text;
-                    obj.Email = txtEmailCliente.Text;
-
-                    new ServicoDAO().Inserir(obj);
-
-                    MessageBox.Show("Dados salvos com sucesso");
-                    this.Hide();
-                    new Form1().Show();
-                }
-            }
-            catch (Exception er)
-            {
-                MessageBox.Show("ERRO: " + er.Message);
-            }
-        }
-
+        
         private void cmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
 

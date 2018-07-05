@@ -12,9 +12,10 @@ namespace TrocaOleo
     {
         public void Inserir(ServicoTrocaOleo obj)
         {
-            using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.conn))
+            using (SqlConnection conn = new
+          SqlConnection(Properties.Settings.Default.conn))
             {
-                string strSQL = @"INSERT INTO TrocaOleo (DATAS, CLIENTE, OLEO, TIPO, CATEGORIA, FABRICANTE, VALOR, QTDE, EMAILC ) VALUES (@DATA, @ClIENTE, @OLEO, @CATEGORIA, @TIPO, @FABRICANTE, @VALOR, @qtde, @Emailc);";
+                string strSQL = @"INSERT INTO STROLEO (DATAS, CLIENTE, OLEO, TIPO, CATEGORIA, FABRICANTE, VALOR, QTDE, EMAILC  ) VALUES (@DATA, @CLIENTE, @OLEO, @TIPO, @CATEGORIA, @FABRICANTE, @VALOR, @qtde, @Emailc);";
 
                 using (SqlCommand cmd = new SqlCommand(strSQL))
                 {

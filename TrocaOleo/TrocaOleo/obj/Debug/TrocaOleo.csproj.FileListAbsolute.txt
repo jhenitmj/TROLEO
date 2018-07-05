@@ -37,3 +37,13 @@ C:\Users\Aluno\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\obj\Debug\TrocaOleo.P
 C:\Users\Aluno\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\obj\Debug\TrocaOleo.csproj.GenerateResource.Cache
 C:\Users\Aluno\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\bin\Debug\TrocaOleo.exe
 C:\Users\Aluno\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\bin\Debug\TrocaOleo.pdb
+C:\Users\Particular\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\bin\Debug\TrocaOleo.exe.config
+C:\Users\Particular\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\obj\Debug\TrocaOleo.exe
+C:\Users\Particular\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\obj\Debug\TrocaOleo.pdb
+C:\Users\Particular\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\bin\Debug\TrocaOleo.exe
+C:\Users\Particular\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\bin\Debug\TrocaOleo.pdb
+C:\Users\Particular\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\obj\Debug\TrocaOleo.csprojResolveAssemblyReference.cache
+C:\Users\Particular\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\obj\Debug\TrocaOleo.Form1.resources
+C:\Users\Particular\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\obj\Debug\TrocaOleo.FormLogin.resources
+C:\Users\Particular\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\obj\Debug\TrocaOleo.Properties.Resources.resources
+C:\Users\Particular\Documents\GitHub\TROLEO\TrocaOleo\TrocaOleo\obj\Debug\TrocaOleo.csproj.GenerateResource.Cache

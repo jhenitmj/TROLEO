@@ -12,22 +12,19 @@ namespace TrocaOleo
 {
     public partial class FormLogin : Form
     {
-        public Usuario usuario { get; set; }
-
         public FormLogin()
         {
             InitializeComponent();
         }
 
-        private void FormLogin_Load(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
-
 
         }
 
-        private void btnEntrar_Click(object sender, EventArgs e)
+        private void FormLogin_Load(object sender, EventArgs e)
         {
-            FazerLogin();
+           
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
@@ -35,56 +32,7 @@ namespace TrocaOleo
 
         }
 
-        private void txtSenha_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-        private void FazerLogin()
-        {
-            if (!ValidarCampos())
-                return;
-
-            var obj = new Usuario()
-            {
-                Email = txtEmail.Text,
-                Senha = txtSenha.Text
-            };
-
-            var result = new UsuarioDAO().Logar(obj);
-            if (result != null)
-            {
-                this.usuario = result;
-                DialogResult = DialogResult.OK;
-            }
-            else
-            {
-                txtSenha.Text = string.Empty;
-                txtEmail.Text = string.Empty;
-
-                MessageBox.Show("Email ou senha inválido!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtEmail.Focus();
-            }
-        }
-
-        private bool ValidarCampos()
-        {
-            txtSenha.Clear();
-            txtEmail.Clear();
-            var aux = true;
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
-            {
-                aux = false;
-                MessageBox.Show("Campo obrigatório!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            if (string.IsNullOrWhiteSpace(txtSenha.Text))
-            {
-                aux = false;
-                MessageBox.Show("Campo obrigatório!", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            return aux;
-        }
-
-        private void FormLogin_Load_1(object sender, EventArgs e)
+        private void btnEntrar_Click(object sender, EventArgs e)
         {
             Usuario obj = new Usuario();
 
@@ -94,25 +42,26 @@ namespace TrocaOleo
             try
             {
                 var usuario = new UsuarioDAO().Logar(obj);
+                ClienteDAO clienteDao = new ClienteDAO();
 
-                if (!usuario.Senha.Equals(txtSenha.Text))
+                if (!usuario.Senha.Equals(txtSenha.Text) )
                 {
                     txtSenha.Clear();
-                    MessageBox.Show("Senha invállida", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("LOGIN INVALIDO", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtSenha.Focus();
                 }
-                else if (!usuario.Email.Equals(txtEmail.Text))
+                else if (!usuario.Email.Equals(txtEmail.Text) )
                 {
-                    new UsuarioDAO().Inserir(obj);
-                    MessageBox.Show("Nova conta salva");
+                    UsuarioDAO.CadastrarUsuario(obj);
+                    MessageBox.Show("NOVA CONTA SALVA");
                     this.Hide();
                     new Form1().Show();
                 }
                 else
                 {
-                    MessageBox.Show("Logado com sucesso");
+                    MessageBox.Show("LOGADO COM SUCESSO");
                     this.Hide();
-           
+                    new Form1().Show();
                 }
             }
             catch (Exception er)
@@ -122,4 +71,3 @@ namespace TrocaOleo
         }
     }
 }
-

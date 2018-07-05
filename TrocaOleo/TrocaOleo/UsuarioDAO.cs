@@ -10,11 +10,12 @@ namespace TrocaOleo
 {
     public class UsuarioDAO
     {
+
         public Usuario Logar(Usuario obj)
         {
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog = TROLEO; Data Source = localhost; Integrated Security = SSPI"))
+            using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.conn))
             {
-                string strSQL = "select EMAIL, SENHA FROM [USER] WHERE EMAIL = @EMAIL and SENHA = @SENHA";
+                string strSQL = @"SELECT EMAIL, SENHA FROM [USER] WHERE Email = @email or Senha = @senha;";
 
                 DataTable dt = new DataTable();
                 conn.Open();
@@ -24,9 +25,8 @@ namespace TrocaOleo
                     cmdo.CommandType = CommandType.Text;
                     cmdo.Connection = conn;
                     cmdo.CommandText = strSQL;
-
-                    cmdo.Parameters.Add("@EMAIL", SqlDbType.VarChar).Value = obj.Email;
-                    cmdo.Parameters.Add("@SENHA", SqlDbType.VarChar).Value = obj.Senha;
+                    cmdo.Parameters.Add("@email", SqlDbType.VarChar).Value = obj.Email;
+                    cmdo.Parameters.Add("@senha", SqlDbType.VarChar).Value = obj.Senha;
 
                     SqlDataReader dataReader;
                     dataReader = cmdo.ExecuteReader();
@@ -38,8 +38,8 @@ namespace TrocaOleo
                     var row = dt.Rows[0];
                     var usuario = new Usuario()
                     {
-                        Email = row["EMAIL"].ToString(),
-                        Senha = row["SENHA"].ToString()
+                        Email = row["Email"].ToString(),
+                        Senha = row["Senha"].ToString()
                     };
 
                     conn.Close();
@@ -48,12 +48,11 @@ namespace TrocaOleo
             }
         }
 
-        public void Inserir(Usuario obj)
+        public static void CadastrarUsuario(Usuario obj)
         {
-
             using (SqlConnection conn = new SqlConnection(Properties.Settings.Default.conn))
             {
-                string strSQL = @"INSERT INTO USUARIO (EMAIL, SENHA) VALUES (@Email, @Senha);";
+                string strSQL = @"INSERT INTO [USER] (Email, Senha) VALUES (@Email, @Senha);";
 
                 using (SqlCommand cmd = new SqlCommand(strSQL))
                 {
@@ -64,7 +63,6 @@ namespace TrocaOleo
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
-
                 }
             }
         }

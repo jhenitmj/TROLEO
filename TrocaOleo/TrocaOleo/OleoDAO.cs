@@ -14,7 +14,8 @@ namespace TrocaOleo
 
         public List<Oleo> CarregarOleo()
         {
-            using (SqlConnection conn = new SqlConnection(@"Initial Catalog = TROLEO; Data Source = localhost; Integrated Security = SSPI"))
+            using (SqlConnection conn = new
+          SqlConnection(Properties.Settings.Default.conn))
             {
                 string srtSQL = "SELECT * FROM OLEO";
                 DataTable dt = new DataTable();

@@ -14,7 +14,8 @@ namespace TrocaOleo
         {
             var lst = new List<Cliente>();
 
-            using (SqlConnection conn = new SqlConnection(@"Data Source=localhost;Initial Catalog=TROLEO;Integrated Security=True"))
+            using (SqlConnection conn = new
+          SqlConnection(Properties.Settings.Default.conn))
             {
                 string strSQL = "SELECT * FROM CLIENTE;";
 
