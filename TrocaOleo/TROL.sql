@@ -49,7 +49,7 @@ with (codepage='ACP', fieldterminator = ';')
 
 
 bulk insert CLIENTE
-from 'C:SELECT * FROM STROLEO\Users\Particular\Documents\GitHub\TROLEO\Clientes.txt'
+from 'C:\Users\Particular\Documents\GitHub\TROLEO\Clientes.txt'
 with (codepage='ACP', fieldterminator = ';')
 
 bulk insert OLEO
@@ -61,3 +61,4 @@ SELECT*FROM [USER]
 SELECT NOME FROM CLIENTE
 
 
+SELECT * FROM OLEO
